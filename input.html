@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ввод данных</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Логотип</div>
+        <div class="user-info">
+            <span>Имя пользователя</span>
+            <button id="logout-btn">Выход</button>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="#">Анализ</a></li>
+            <li><a href="recommendations.html">Рекомендации</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="input-form">
+            <h2>Введите личные данные</h2>
+            <input type="text" id="full-name" placeholder="ФИО">
+            <input type="text" id="inn" placeholder="ИНН">
+            <input type="text" id="address" placeholder="Адрес">
+            <h2>Введите данные о доходах и расходах</h2>
+            <input type="text" id="income" placeholder="Доходы (руб)">
+            <input type="text" id="expenses" placeholder="Расходы (руб)">
+            <button id="save-btn">Сохранить и продолжить</button>
+            <button id="upload-docs-btn">Загрузить документы</button>
+            <button id="sync-fns-btn">Синхронизировать с ФНС</button>
+        </div>
+    </main>
+    <footer>
+        <p>Контактная информация | Поддержка</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
