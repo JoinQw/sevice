@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Логотип</div>
+        <div class="user-info">
+            <span>Имя пользователя</span>
+            <button id="logout-btn">Выход</button>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="input.html">Ввод данных</a></li>
+            <li><a href="#">Анализ</a></li>
+            <li><a href="recommendations.html">Рекомендации</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="input-section">
+            <input type="text" id="income-input" placeholder="Введите сумму дохода">
+            <button id="upload-docs-btn">Загрузить документы</button>
+            <button id="sync-fns-btn">Синхронизировать с ФНС</button>
+        </div>
+        <div class="stats">
+            <p>Доходы за месяц: 50 000 руб.</p>
+            <p>Расходы за месяц: 30 000 руб.</p>
+        </div>
+    </main>
+    <footer>
+        <p>Контактная информация | Поддержка</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
