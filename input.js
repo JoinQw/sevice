@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Инициализация ввода расходов
     initExpenseInput();
+	
+	 // Инициализация навигации по вкладкам
+    initTabNavigation();
 });
 
 // Инициализация формы личных данных
@@ -456,4 +459,155 @@ function initDocumentUpload() {
             fileInput.click();
         });
     });
+}
+
+// Инициализация навигации по вкладкам
+function initTabNavigation() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const prevBtn = document.getElementById('prev-tab-btn');
+    const nextBtn = document.getElementById('next-tab-btn');
+    const completeBtn = document.getElementById('complete-input-btn');
+    
+    let currentTab = 0;
+    
+    // Показываем первую вкладку
+    showTab(currentTab);
+    
+    // Обработчики для кнопок "Назад" и "Далее"
+    prevBtn.addEventListener('click', function() {
+        if (currentTab > 0) {
+            currentTab--;
+            showTab(currentTab);
+        }
+    });
+    
+    nextBtn.addEventListener('click', function() {
+        if (validateCurrentTab(currentTab)) {
+            if (currentTab < tabButtons.length - 1) {
+                currentTab++;
+                showTab(currentTab);
+            }
+        }
+    });
+    
+    // Обработчик для кнопок вкладок
+    tabButtons.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            if (validateCurrentTab(currentTab)) {
+                currentTab = index;
+                showTab(currentTab);
+            }
+        });
+    });
+    
+    // Функция для отображения текущей вкладки
+    function showTab(index) {
+        // Скрываем все вкладки
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        // Убираем активный класс у всех кнопок вкладок
+        tabButtons.forEach(button => {
+            button.classList.remove('active');
+        });
+        
+        // Показываем текущую вкладку
+        tabContents[index].classList.add('active');
+        tabButtons[index].classList.add('active');
+        
+        // Обновляем состояние кнопок навигации
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === tabButtons.length - 1;
+        completeBtn.classList.toggle('hidden', index !== tabButtons.length - 1);
+    }
+    
+    // Валидация данных на текущей вкладке
+    function validateCurrentTab(index) {
+        switch(index) {
+            case 0: // Личные данные
+                const fullName = document.getElementById('full-name').value.trim();
+                const inn = document.getElementById('inn').value.trim();
+                const address = document.getElementById('address').value.trim();
+                const passport = document.getElementById('passport').value.trim();
+                
+                if (!fullName || !inn || !address || !passport) {
+                    showNotification('error', 'Пожалуйста, заполните все поля личных данных');
+                    return false;
+                }
+                
+                if (!validateINN(inn)) {
+                    showNotification('error', 'Пожалуйста, введите корректный ИНН (12 цифр)');
+                    return false;
+                }
+                
+                return true;
+                
+            case 1: // Доходы
+                const incomeEntries = document.querySelectorAll('.income-entry');
+                if (incomeEntries.length === 0) {
+                    showNotification('error', 'Пожалуйста, добавьте хотя бы один источник дохода');
+                    return false;
+                }
+                
+                let hasErrors = false;
+                incomeEntries.forEach(entry => {
+                    const amount = entry.querySelector('.income-amount').value;
+                    if (!amount || isNaN(amount)) {
+                        hasErrors = true;
+                        entry.querySelector('.income-amount').classList.add('error');
+                    } else {
+                        entry.querySelector('.income-amount').classList.remove('error');
+                    }
+                });
+                
+                if (hasErrors) {
+                    showNotification('error', 'Пожалуйста, укажите корректные суммы доходов');
+                    return false;
+                }
+                
+                return true;
+                
+            case 2: // Расходы
+                // Проверяем, что хотя бы одна категория расходов заполнена
+                const expenseCategories = document.querySelectorAll('.category-card');
+                let hasExpenses = false;
+                
+                expenseCategories.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    const expenseList = document.getElementById(`${category}-expenses`);
+                    if (expenseList && expenseList.children.length > 0) {
+                        hasExpenses = true;
+                    }
+                });
+                
+                if (!hasExpenses) {
+                    showNotification('info', 'Вы можете добавить расходы для получения налоговых вычетов');
+                    // Разрешаем переход даже без расходов, так как они не обязательны
+                }
+                
+                return true;
+                
+            case 3: // Документы
+                // Документы не обязательны для продолжения
+                return true;
+                
+            default:
+                return true;
+        }
+    }
+});
+
+// Функция для показа уведомлений (добавьте, если её нет)
+function showNotification(type, message) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
 }
