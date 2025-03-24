@@ -816,3 +816,33 @@ button:disabled {
 .hidden {
     display: none !important;
 }
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+}
+
+.notification.error {
+    background-color: #f44336;
+}
+
+.notification.info {
+    background-color: #2196F3;
+}
+
+.error {
+    border: 1px solid #f44336 !important;
+}
+
+.hidden {
+    display: none;
+}
