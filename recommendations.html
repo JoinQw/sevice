@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Рекомендации</title>
+    <title>Рекомендации - Налоговый помощник</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">Логотип</div>
+        <div class="logo">Налоговый помощник</div>
         <div class="user-info">
-            <span>Имя пользователя</span>
+            <span id="username-display">Имя пользователя</span>
             <button id="logout-btn">Выход</button>
         </div>
     </header>
@@ -18,27 +18,135 @@
         <ul>
             <li><a href="index.html">Главная</a></li>
             <li><a href="input.html">Ввод данных</a></li>
-            <li><a href="#">Анализ</a></li>
+            <li><a href="analysis.html">Анализ</a></li>
+            <li><a href="recommendations.html" class="active">Рекомендации</a></li>
+            <li><a href="documents.html">Документы</a></li>
         </ul>
     </nav>
     <main>
-        <div class="recommendations">
-            <h2>Доступные налоговые вычеты</h2>
-            <div class="deduction">
-                <p><strong>Социальный вычет на образование</strong> - 15 000 руб.</p>
-                <button class="details-btn">Подробнее</button>
+        <div class="recommendations-container">
+            <h1>Доступные налоговые вычеты</h1>
+            
+            <div class="recommendations-summary">
+                <div class="summary-card">
+                    <h3>Общая сумма вычетов</h3>
+                    <p class="amount" id="total-deductions">0 руб.</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Потенциальный возврат</h3>
+                    <p class="amount" id="total-return">0 руб.</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Статус</h3>
+                    <p class="status" id="recommendations-status">Данные анализируются</p>
+                </div>
             </div>
-            <div class="deduction">
-                <p><strong>Социальный вычет на лечение</strong> - 10 000 руб.</p>
-                <button class="details-btn">Подробнее</button>
+            
+            <div class="deduction-types">
+                <div class="deduction-type active" data-type="all">
+                    <span>Все вычеты</span>
+                </div>
+                <div class="deduction-type" data-type="social">
+                    <span>Социальные</span>
+                </div>
+                <div class="deduction-type" data-type="property">
+                    <span>Имущественные</span>
+                </div>
+                <div class="deduction-type" data-type="standard">
+                    <span>Стандартные</span>
+                </div>
+                <div class="deduction-type" data-type="investment">
+                    <span>Инвестиционные</span>
+                </div>
             </div>
-            <button id="generate-docs-btn">Сформировать документы</button>
-            <button id="submit-gosuslugi-btn">Отправить через Госуслуги</button>
+            
+            <div class="deductions-list" id="deductions-list">
+                <!-- Пример вычета -->
+                <div class="deduction-card social">
+                    <div class="deduction-header">
+                        <h3>Социальный вычет на образование</h3>
+                        <span class="deduction-amount">+15,000 руб.</span>
+                    </div>
+                    <div class="deduction-details">
+                        <p>Вы можете вернуть 13% от расходов на образование (свое или детей). Максимальная сумма расходов для вычета - 120,000 руб. в год.</p>
+                        <div class="deduction-documents">
+                            <h4>Необходимые документы:</h4>
+                            <ul>
+                                <li>Договор с образовательным учреждением</li>
+                                <li>Лицензия образовательного учреждения</li>
+                                <li>Платежные документы</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="deduction-actions">
+                        <button class="details-btn">Подробнее</button>
+                        <button class="include-btn">Включить в декларацию</button>
+                    </div>
+                </div>
+                
+                <!-- Еще вычеты будут добавляться динамически -->
+            </div>
+            
+            <div class="recommendations-actions">
+                <button id="generate-all-docs-btn" class="primary-btn">Сформировать все документы</button>
+                <button id="submit-gosuslugi-btn" class="secondary-btn">Отправить через Госуслуги</button>
+                <button id="save-for-later-btn" class="tertiary-btn">Сохранить для последующей подачи</button>
+            </div>
+            
+            <div class="timeline-container">
+                <h2>Процесс получения вычета</h2>
+                <div class="timeline">
+                    <div class="timeline-step active">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Сбор документов</h3>
+                            <p>Подготовьте все необходимые документы</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Заполнение декларации</h3>
+                            <p>Заполните форму 3-НДФЛ</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Подача в ФНС</h3>
+                            <p>Отправьте документы в налоговую</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Получение денег</h3>
+                            <p>Дождитесь перевода средств</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer>
-        <p>Контактная информация | Поддержка</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <p>Телефон: 8-800-123-4567</p>
+                <p>Email: support@naloghelper.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>О сервисе</h3>
+                <p>Автоматический подбор налоговых вычетов</p>
+                <p>Версия 1.0</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 Налоговый помощник. Все права защищены.</p>
+        </div>
     </footer>
     <script src="script.js"></script>
+    <script src="recommendations.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>

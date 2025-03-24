@@ -3,41 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ввод данных</title>
+    <title>Ввод данных - Налоговый помощник</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">Логотип</div>
+        <div class="logo">Налоговый помощник</div>
         <div class="user-info">
-            <span>Имя пользователя</span>
+            <span id="username-display">Имя пользователя</span>
             <button id="logout-btn">Выход</button>
         </div>
     </header>
     <nav>
         <ul>
             <li><a href="index.html">Главная</a></li>
-            <li><a href="#">Анализ</a></li>
+            <li><a href="input.html" class="active">Ввод данных</a></li>
+            <li><a href="analysis.html">Анализ</a></li>
             <li><a href="recommendations.html">Рекомендации</a></li>
+            <li><a href="documents.html">Документы</a></li>
         </ul>
     </nav>
     <main>
-        <div class="input-form">
-            <h2>Введите личные данные</h2>
-            <input type="text" id="full-name" placeholder="ФИО">
-            <input type="text" id="inn" placeholder="ИНН">
-            <input type="text" id="address" placeholder="Адрес">
-            <h2>Введите данные о доходах и расходах</h2>
-            <input type="text" id="income" placeholder="Доходы (руб)">
-            <input type="text" id="expenses" placeholder="Расходы (руб)">
-            <button id="save-btn">Сохранить и продолжить</button>
-            <button id="upload-docs-btn">Загрузить документы</button>
-            <button id="sync-fns-btn">Синхронизировать с ФНС</button>
+        <div class="input-container">
+            <h1>Ввод данных для анализа</h1>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="personal">Личные данные</button>
+                <button class="tab-btn" data-tab="income">Доходы</button>
+                <button class="tab-btn" data-tab="expenses">Расходы</button>
+                <button class="tab-btn" data-tab="documents">Документы</button>
+            </div>
+            
+            <div class="tab-content active" id="personal-tab">
+                <h2>Личные данные</h2>
+                <form id="personal-form">
+                    <div class="form-group">
+                        <label for="full-name">ФИО</label>
+                        <input type="text" id="full-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inn">ИНН</label>
+                        <input type="text" id="inn" pattern="\d{12}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Адрес регистрации</label>
+                        <input type="text" id="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="passport">Паспортные данные</label>
+                        <input type="text" id="passport" placeholder="Серия и номер" required>
+                    </div>
+                    <button type="submit" class="save-btn">Сохранить</button>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="income-tab">
+                <h2>Данные о доходах</h2>
+                <div class="import-options">
+                    <button id="import-fns-income" class="import-btn">
+                        <span>Импорт из ФНС</span>
+                    </button>
+                    <button id="import-bank-income" class="import-btn">
+                        <span>Импорт из банка</span>
+                    </button>
+                    <button id="import-excel-income" class="import-btn">
+                        <span>Загрузить из Excel</span>
+                    </button>
+                </div>
+                
+                <div class="manual-input-section">
+                    <h3>Ручной ввод</h3>
+                    <div id="income-entries">
+                        <!-- Динамически добавляемые поля дохода -->
+                    </div>
+                    <button id="add-income-btn" class="add-btn">Добавить доход</button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="expenses-tab">
+                <h2>Данные о расходах</h2>
+                <div class="expense-categories">
+                    <div class="category-card" data-category="education">
+                        <h3>Образование</h3>
+                    </div>
+                    <div class="category-card" data-category="health">
+                        <h3>Здоровье</h3>
+                    </div>
+                    <div class="category-card" data-category="property">
+                        <h3>Недвижимость</h3>
+                    </div>
+                    <div class="category-card" data-category="investments">
+                        <h3>Инвестиции</h3>
+                    </div>
+                    <div class="category-card" data-category="other">
+                        <h3>Прочие</h3>
+                    </div>
+                </div>
+                
+                <div id="expense-details" class="expense-details">
+                    <!-- Детали расходов по категориям -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="documents-tab">
+                <h2>Загрузка документов</h2>
+                <div class="document-types">
+                    <div class="document-type">
+                        <h3>Справка 2-НДФЛ</h3>
+                        <div class="document-upload">
+                            <button class="upload-btn">Загрузить</button>
+                            <span class="status">Не загружено</span>
+                        </div>
+                    </div>
+                    <div class="document-type">
+                        <h3>Договоры и платежи</h3>
+                        <div class="document-upload">
+                            <button class="upload-btn">Загрузить</button>
+                            <span class="status">Не загружено</span>
+                        </div>
+                    </div>
+                    <div class="document-type">
+                        <h3>Прочие документы</h3>
+                        <div class="document-upload">
+                            <button class="upload-btn">Загрузить</button>
+                            <span class="status">Не загружено</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="document-preview" id="document-preview">
+                    <h3>Загруженные документы</h3>
+                    <div id="uploaded-documents-list">
+                        <!-- Список загруженных документов -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button id="prev-tab-btn" class="nav-btn" disabled>Назад</button>
+                <button id="next-tab-btn" class="nav-btn">Далее</button>
+                <button id="complete-input-btn" class="primary-btn hidden">Завершить ввод</button>
+            </div>
         </div>
     </main>
     <footer>
-        <p>Контактная информация | Поддержка</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <p>Телефон: 8-800-123-4567</p>
+                <p>Email: support@naloghelper.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>О сервисе</h3>
+                <p>Автоматический подбор налоговых вычетов</p>
+                <p>Версия 1.0</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 Налоговый помощник. Все права защищены.</p>
+        </div>
     </footer>
     <script src="script.js"></script>
+    <script src="input.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>

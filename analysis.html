@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ данных - Налоговый помощник</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Налоговый помощник</div>
+        <div class="user-info">
+            <span id="username-display">Имя пользователя</span>
+            <button id="logout-btn">Выход</button>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="input.html">Ввод данных</a></li>
+            <li><a href="analysis.html" class="active">Анализ</a></li>
+            <li><a href="recommendations.html">Рекомендации</a></li>
+            <li><a href="documents.html">Документы</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="analysis-container">
+            <h1>Анализ ваших данных</h1>
+            
+            <div class="analysis-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="analysis-progress-fill"></div>
+                </div>
+                <span class="progress-text" id="analysis-progress-text">0%</span>
+            </div>
+            
+            <div class="analysis-steps">
+                <div class="analysis-step active">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Проверка данных</h3>
+                        <p>Проверяем полноту и корректность введенных данных</p>
+                    </div>
+                </div>
+                <div class="analysis-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Анализ доходов</h3>
+                        <p>Анализируем данные о ваших доходах за год</p>
+                    </div>
+                </div>
+                <div class="analysis-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Анализ расходов</h3>
+                        <p>Ищем расходы, которые дают право на налоговые вычеты</p>
+                    </div>
+                </div>
+                <div class="analysis-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Формирование рекомендаций</h3>
+                        <p>Определяем, какие вычеты вам доступны</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-results hidden" id="analysis-results">
+                <h2>Результаты анализа</h2>
+                
+                <div class="result-cards">
+                    <div class="result-card">
+                        <h3>Общий доход за год</h3>
+                        <p class="result-value" id="total-income-result">0 руб.</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Уплачено НДФЛ</h3>
+                        <p class="result-value" id="total-tax-result">0 руб.</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Потенциальные вычеты</h3>
+                        <p class="result-value" id="potential-deductions-result">0 руб.</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Возможный возврат</h3>
+                        <p class="result-value" id="potential-return-result">0 руб.</p>
+                    </div>
+                </div>
+                
+                <div class="analysis-actions">
+                    <button id="view-recommendations-btn" class="primary-btn">Посмотреть рекомендации</button>
+                    <button id="restart-analysis-btn" class="secondary-btn">Повторить анализ</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <p>Телефон: 8-800-123-4567</p>
+                <p>Email: support@naloghelper.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>О сервисе</h3>
+                <p>Автоматический подбор налоговых вычетов</p>
+                <p>Версия 1.0</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 Налоговый помощник. Все права защищены.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="analysis.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

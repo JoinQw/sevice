@@ -3,38 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
+    <title>Главная страница - Налоговый помощник</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">Логотип</div>
+        <div class="logo">Налоговый помощник</div>
         <div class="user-info">
-            <span>Имя пользователя</span>
+            <span id="username-display">Имя пользователя</span>
             <button id="logout-btn">Выход</button>
         </div>
     </header>
     <nav>
         <ul>
+            <li><a href="index.html" class="active">Главная</a></li>
             <li><a href="input.html">Ввод данных</a></li>
-            <li><a href="#">Анализ</a></li>
+            <li><a href="analysis.html">Анализ</a></li>
             <li><a href="recommendations.html">Рекомендации</a></li>
+            <li><a href="documents.html">Документы</a></li>
         </ul>
     </nav>
     <main>
-        <div class="input-section">
-            <input type="text" id="income-input" placeholder="Введите сумму дохода">
-            <button id="upload-docs-btn">Загрузить документы</button>
-            <button id="sync-fns-btn">Синхронизировать с ФНС</button>
-        </div>
-        <div class="stats">
-            <p>Доходы за месяц: 50 000 руб.</p>
-            <p>Расходы за месяц: 30 000 руб.</p>
+        <div class="dashboard">
+            <h1>Ваш налоговый профиль</h1>
+            
+            <div class="data-sources">
+                <h2>Источники данных</h2>
+                <div class="source-connection">
+                    <span>Личный кабинет ФНС</span>
+                    <button id="connect-fns-btn" class="connect-btn">Подключить</button>
+                </div>
+                <div class="source-connection">
+                    <span>Госуслуги</span>
+                    <button id="connect-gosuslugi-btn" class="connect-btn">Подключить</button>
+                </div>
+                <div class="source-connection">
+                    <span>Банковские приложения</span>
+                    <button id="connect-bank-btn" class="connect-btn">Подключить</button>
+                </div>
+            </div>
+            
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <h3>Доходы за год</h3>
+                    <p class="stat-value" id="annual-income">0 руб.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Потенциальные вычеты</h3>
+                    <p class="stat-value" id="potential-deductions">0 руб.</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Возможный возврат</h3>
+                    <p class="stat-value" id="potential-return">0 руб.</p>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button id="quick-analysis-btn" class="primary-btn">Быстрый анализ</button>
+                <button id="view-recommendations-btn" class="secondary-btn">Посмотреть рекомендации</button>
+            </div>
+            
+            <div class="notifications">
+                <h2>Уведомления</h2>
+                <div id="notifications-list" class="notifications-list">
+                    <!-- Уведомления будут загружаться динамически -->
+                </div>
+            </div>
         </div>
     </main>
     <footer>
-        <p>Контактная информация | Поддержка</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <p>Телефон: 8-800-123-4567</p>
+                <p>Email: support@naloghelper.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>О сервисе</h3>
+                <p>Автоматический подбор налоговых вычетов</p>
+                <p>Версия 1.0</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 Налоговый помощник. Все права защищены.</p>
+        </div>
     </footer>
     <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="integration.js"></script>
 </body>
 </html>

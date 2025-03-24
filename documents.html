@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документы - Налоговый помощник</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Налоговый помощник</div>
+        <div class="user-info">
+            <span id="username-display">Имя пользователя</span>
+            <button id="logout-btn">Выход</button>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="input.html">Ввод данных</a></li>
+            <li><a href="analysis.html">Анализ</a></li>
+            <li><a href="recommendations.html">Рекомендации</a></li>
+            <li><a href="documents.html" class="active">Документы</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="documents-container">
+            <h1>Документы для подачи в ФНС</h1>
+            
+            <div class="documents-status">
+                <div class="status-card ready">
+                    <h3>Готово к подаче</h3>
+                    <p class="status-value" id="ready-docs-count">0</p>
+                </div>
+                <div class="status-card missing">
+                    <h3>Требуются документы</h3>
+                    <p class="status-value" id="missing-docs-count">0</p>
+                </div>
+                <div class="status-card total">
+                    <h3>Всего документов</h3>
+                    <p class="status-value" id="total-docs-count">0</p>
+                </div>
+            </div>
+            
+            <div class="documents-list">
+                <div class="document-section">
+                    <h2>Основные документы</h2>
+                    
+                    <div class="document-item ready">
+                        <div class="document-info">
+                            <h3>Декларация 3-НДФЛ</h3>
+                            <p class="document-status">Готово</p>
+                        </div>
+                        <div class="document-actions">
+                            <button class="view-btn">Просмотреть</button>
+                            <button class="download-btn">Скачать</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item ready">
+                        <div class="document-info">
+                            <h3>Заявление на возврат налога</h3>
+                            <p class="document-status">Готово</p>
+                        </div>
+                        <div class="document-actions">
+                            <button class="view-btn">Просмотреть</button>
+                            <button class="download-btn">Скачать</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="document-section">
+                    <h2>Подтверждающие документы</h2>
+                    
+                    <div class="document-item missing">
+                        <div class="document-info">
+                            <h3>Справка 2-НДФЛ</h3>
+                            <p class="document-status">Отсутствует</p>
+                            <p class="document-hint">Загрузите справку от работодателя</p>
+                        </div>
+                        <div class="document-actions">
+                            <button class="upload-btn">Загрузить</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item ready">
+                        <div class="document-info">
+                            <h3>Договор на обучение</h3>
+                            <p class="document-status">Готово</p>
+                        </div>
+                        <div class="document-actions">
+                            <button class="view-btn">Просмотреть</button>
+                            <button class="download-btn">Скачать</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-item ready">
+                        <div class="document-info">
+                            <h3>Платежные документы</h3>
+                            <p class="document-status">Готово</p>
+                        </div>
+                        <div class="document-actions">
+                            <button class="view-btn">Просмотреть</button>
+                            <button class="download-btn">Скачать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="documents-actions">
+                <button id="generate-all-docs-btn" class="primary-btn">Сформировать все документы</button>
+                <button id="submit-gosuslugi-btn" class="secondary-btn">Отправить через Госуслуги</button>
+                <button id="save-docs-btn" class="tertiary-btn">Сохранить для последующей подачи</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <p>Телефон: 8-800-123-4567</p>
+                <p>Email: support@naloghelper.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>О сервисе</h3>
+                <p>Автоматический подбор налоговых вычетов</p>
+                <p>Версия 1.0</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 Налоговый помощник. Все права защищены.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="documents.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
